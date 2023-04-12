@@ -1,0 +1,17 @@
+{
+  "name": "searchio",
+  "version": "1.0.0",
+  "description": "image search engine",
+  "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/asuka-405/SearchIO.git",
+  "author": "Suryansh Kapil <suryanshkapil405@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.22",
+    "weaviate-ts-client": "^1.0.0"
+  }
+}
