@@ -3,18 +3,21 @@ import { readFileSync, saveImageAll, writeFileSync } from "./utils.js"
 
 // const schemaRes = await CLIENT.schema.getter().do()
 
-saveImageAll("./images")
+// saveImageAll("./images")
 
-const TEST = Buffer.from(readFileSync("./test.png")).toString("base64")
+const TEST = Buffer.from(readFileSync("./test.jpg")).toString("base64")
 
 const RES_IMAGE = await CLIENT.graphql
   .get()
   .withClassName("ScreenShots")
   .withFields(["image"])
   .withNearImage({ image: TEST })
-  .withLimit(1)
+  .withLimit(10)
   .do()
 
-// // Write result to filesystem
-const RESULT = RES_IMAGE.data.Get.ScreenShots[0].image
-writeFileSync("./result.jpg", RESULT, "base64")
+// Write results to filesystem
+const screenshots = RES_IMAGE.data.Get.ScreenShots
+for (let i = 0; i < screenshots.length; i++) {
+  const image = screenshots[i].image
+  writeFileSync(`./result_${i}.jpg`, image, "base64")
+}
